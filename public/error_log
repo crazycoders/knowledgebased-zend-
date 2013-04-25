@@ -1,0 +1,21 @@
+[26-Sep-2012 01:16:39] PHP Parse error:  syntax error, unexpected T_ECHO in /home/rainbowr/public_html/dev/support/knowledgebased/application/views/scripts/article/index.phtml on line 84
+[26-Sep-2012 01:16:41] PHP Parse error:  syntax error, unexpected T_ECHO in /home/rainbowr/public_html/dev/support/knowledgebased/application/views/scripts/article/index.phtml on line 84
+[26-Sep-2012 01:16:44] PHP Parse error:  syntax error, unexpected T_ECHO in /home/rainbowr/public_html/dev/support/knowledgebased/application/views/scripts/article/index.phtml on line 84
+[26-Sep-2012 13:46:07] PHP Fatal error:  Call to a member function getSection() on a non-object in /home/rainbowr/public_html/dev/support/knowledgebased/application/controllers/ArticleController.php on line 167
+[26-Sep-2012 13:46:17] PHP Fatal error:  Call to a member function getSection() on a non-object in /home/rainbowr/public_html/dev/support/knowledgebased/application/controllers/ArticleController.php on line 167
+[26-Sep-2012 13:49:52] PHP Fatal error:  Cannot redeclare ArticleController::editcategoryAction() in /home/rainbowr/public_html/dev/support/knowledgebased/application/controllers/ArticleController.php on line 150
+[26-Sep-2012 13:49:54] PHP Fatal error:  Cannot redeclare ArticleController::editcategoryAction() in /home/rainbowr/public_html/dev/support/knowledgebased/application/controllers/ArticleController.php on line 150
+[26-Sep-2012 13:49:59] PHP Fatal error:  Cannot redeclare ArticleController::editcategoryAction() in /home/rainbowr/public_html/dev/support/knowledgebased/application/controllers/ArticleController.php on line 150
+[26-Sep-2012 13:50:48] PHP Fatal error:  Uncaught exception 'Zend_Controller_Response_Exception' with message 'Cannot send headers; headers already sent in /home/rainbowr/public_html/dev/support/knowledgebased/application/controllers/ArticleController.php, line 1' in /home/rainbowr/public_html/dev/support/knowledgebased/library/Zend/Controller/Response/Abstract.php:323
+Stack trace:
+#0 /home/rainbowr/public_html/dev/support/knowledgebased/library/Zend/Controller/Response/Abstract.php(341): Zend_Controller_Response_Abstract->canSendHeaders(true)
+#1 /home/rainbowr/public_html/dev/support/knowledgebased/library/Zend/Controller/Response/Abstract.php(768): Zend_Controller_Response_Abstract->sendHeaders()
+#2 /home/rainbowr/public_html/dev/support/knowledgebased/library/Zend/Controller/Front.php(992): Zend_Controller_Response_Abstract->sendResponse()
+#3 /home/rainbowr/public_html/dev/support/knowledgebased/library/Zend/Application/Bootstrap/Bootstrap.php(97): Zend_Controller_Front->dispatch()
+#4 /home/rainbowr/public_html/dev/support/knowledgebased/library/ in /home/rainbowr/public_html/dev/support/knowledgebased/library/Zend/Controller/Response/Abstract.php on line 323
+[01-Oct-2012 01:09:09] PHP Parse error:  syntax error, unexpected ';' in /home/rainbowr/public_html/dev/support/knowledgebased/application/views/scripts/article/index.phtml on line 139
+[01-Oct-2012 01:09:13] PHP Parse error:  syntax error, unexpected ';' in /home/rainbowr/public_html/dev/support/knowledgebased/application/views/scripts/article/index.phtml on line 139
+[01-Oct-2012 01:24:43] PHP Parse error:  syntax error, unexpected $end in /home/rainbowr/public_html/dev/support/knowledgebased/application/views/scripts/article/index.phtml on line 171
+[08-Oct-2012 22:58:53] PHP Parse error:  syntax error, unexpected '}' in /home/rainbowr/public_html/dev/support/knowledgebased/application/models/DbTable/Articles.php on line 64
+[08-Oct-2012 22:59:59] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting ')' in /home/rainbowr/public_html/dev/support/knowledgebased/application/models/DbTable/Articles.php on line 72
+[08-Oct-2012 22:59:59] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting ')' in /home/rainbowr/public_html/dev/support/knowledgebased/application/models/DbTable/Articles.php on line 72

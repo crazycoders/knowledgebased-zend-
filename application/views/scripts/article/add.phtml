@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title>Knowledge Base</title>
+        <?php
+       // echo 'http://brijesh.com'.$this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+
+		  <?php
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+<link type="text/css" rel="stylesheet" media="screen" href="http://brijesh.com/knowledgebased/public/css/add.css"></link>
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+         <script src='http://brijesh.com/knowledgebased/public/js/bootstrap.js'></script>
+        <?php
+         //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/example.js');
+        ?>
+
+         <?php 
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/add.css');
+        ?>
+        <style type="text/css" >
+            .err{
+                color:#FF0000;
+            }
+				#cke_content_danish{
+				margin-top:25px;
+			}
+        </style>
+        <!--[if IE ]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+        <?php 
+        // echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/bootstrap.js');
+       	 ?>
+	
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                $('#section_err').text("");
+                $('#category_err').text("");
+                $('#article_err').text("");
+                $('#content_err').text("");
+		$('#content_danish_err').text("");
+		$('#article_name_danish_err').text("");
+                $('#section_cat_err').text("");
+                $('#category_cat_err').text("");
+                 
+                $('#article_form').submit(function() {
+                    var counter=false;
+                    if($('#section').val()=='0')
+                        $('#section_err').text("Please select section!");
+                    else
+                        $('#section_err').text("");
+
+                    if($('#category').val()=='0')
+                        $('#category_err').text("Please select category!");
+                    else
+                        $('#category_err').text("");
+
+                    if($('#article').val()=='')
+                        $('#article_err').text("Please enter valid article!");
+                    else
+                        $('#article_err').text("");
+
+                    if(!($('#content').val()).length)
+                        $('#content_err').text("Please enter valid content!");
+                    else
+                        $('#content_err').text("");
+
+ if(!($('#article_name_danish').val()).length)
+                        $('#article_name_danish_err').text("Please enter valid article name!");
+                    else
+                        $('#article_name_danish_err').text("");	
+
+ if(!($('#content_danish').val()).length)
+                        $('#content_danish_err').text("Please enter valid content!");
+                    else
+                        $('#content_danish_err').text("");
+	
+
+                    if(($('#section').val()!='0')&&($('#category').val()!='0')&&($('#article').val())&&($('#article_name_danish').val())&&(($('#content_danish').val()).length)&&(($('#content').val()).length)){//alert($('#section').val()+' '+$('#category').val()+' '+$('#article').val()+' '+($('#content').val()).length);
+                        return true;
+                    }
+                    return false;
+
+                });
+
+                $('#category_form').submit(function() {
+                    var counter=false;
+                    if($('#section_cat').val()=='0')
+                        $('#section_cat_err').text("Please select section!");
+                    else
+                        $('#section_cat_err').text("");
+
+                    if($('#category_cat').val()=='')
+                        $('#category_cat_err').text("Please enter valid category!");
+                    else
+                        $('#category_cat_err').text("");
+
+                    if(($('#section_cat').val()!='0')&&($('#category_cat').val()!='')){
+                        return true;
+                    }
+                    return false;
+
+                });
+
+                $('#new').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'add'), null, true); ?>';
+                });
+                $('#new_cat').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'addcategory'), null, true); ?>';
+                });
+
+                $('#back').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'viewarticle'), null, true); ?>';
+                });
+                $('#category').click(function() {
+                    var htamlString='';
+                    if($('#section').val()!=''){
+                        
+                        $.ajax({
+                            url: '<?php echo $this->url(array('controller' => 'article', 'action' => 'getcategory'), null, true); ?>?id='+$('#section').val(),
+                            type: "GET",
+                            dataType:"json",
+                            success: function(data) {
+                                //alert(data);
+                                //$("#category").append("<option >select category</option>");
+                                htamlString='';
+                                for(var i=0;i<data.length;i++){
+                                    htamlString+="<option value="+data[i].id+">"+data[i].name+"</option>";
+                                }
+                                $("#category").append(htamlString);
+                            } 
+                        });
+                       
+                    }    });
+                $('#logout').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'index', 'action' => 'logout')); ?>';
+                });
+            });
+
+        </script>
+
+<?php
+ //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/ckeditor/ckeditor.js');
+      //   echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/ckeditor/adapters/jquery.js');
+
+?>
+        <script src='http://brijesh.com/knowledgebased/public/js/ckeditor/ckeditor.js'></script>
+        <script src='http://brijesh.com/knowledgebased/public/js/ckeditor/adapters/jquery.js'></script>
+
+    </head>
+    <body>
+    <header>
+        <section class="top-header group">
+            <div class="logo">
+                <a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewarticle'), NULL, TRUE); ?>">Knowledge Base </a>
+            </div>
+            <button class="logout" id="logout">LOG OUT</button>
+            <button class="new" id="new">New Article</button>
+            <button class="new" id="new_cat">New Category</button>
+        </section> <!-- END logo -->
+
+        <section class="tab-menu group">
+            <nav>
+                <ul>
+                    <li class="active" data-name="add-article"><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewarticle'), NULL, true); ?>" >Articles</a> </li>
+                    <li data-name="add-categories"><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewcategory'), NULL, true); ?>" >Categories</a> </li>
+                </ul>
+            </nav>
+        </section> <!-- END tab-menu -->
+
+        <span class="tab-border group"></span>
+    </header>	<!-- END header -->
+    <form id="article_form" action="<?php echo $this->url(array('controller' => 'article', 'action' => 'add'), null, true); ?>" method="post" >
+        <section class="main-content group">
+            <section class="add-article group">
+                <label for="">Section</label>
+                <select id="section" name="section" >
+                    <option value="0" selected="selected" >Select Section</option>
+                    <?php for ($i = 0; $i < count($this->sec_result); $i++) {
+                    ?>
+                        <option value="<?php echo $this->sec_result[$i]['id']; ?>"><?php echo $this->sec_result[$i]['name']; ?></option>
+                    <?php } ?>
+
+                </select><span id="section_err" class="err" ></span><br>
+                <label for="">Category</label>
+                <select id="category" name="category" >
+                    <option value="0" selected="selected" >select category</option>
+                </select><span id="category_err" class="err" ></span><br><br><br>
+
+                <div class="english-danish group">
+                    <div class="left-col group">
+                        <h3>English</h3>
+                        <label for="">Article</label>
+                        <input type="text" name="article" id="article" /><br/><span id="article_err" class="err" style="margin-left: 106px;" ></span><br><br>
+                        <label for="">Content</label>
+                        <textarea name="content" id="content" cols="30" rows="10"></textarea><span style="bottom: 0px; margin-left: 0px; margin-bottom: 0px; left: -146px; margin-top: 0px; position: relative; top: -65px;" class="err" id="content_err"></span>
+                        <div class="button">
+                            <button id="back" >Back</button>
+                            <button>Save</button>
+                        </div>
+                    </div>
+                    <div class="right-col">
+                        <h3>Danish</h3>
+                        <input type="text" name="article_name_danish" id="article_name_danish" value="" /><br/><span id="article_name_danish_err" class="err" ></span><br><br>
+                        <textarea name="content_danish" id="content_danish" cols="30" rows="10"></textarea><br/><span style="margin-left: 8px; position: relative; border-bottom-width: 0px; margin-top: 0px; top: -87px; left: 60px;" class="err" id="content_danish_err"></span>
+                    </div>
+
+
+                </div>	<!-- END english-danish -->
+            </section>  <!-- END add-article -->
+    </form>
+    <form id="category_form" action="<?php echo $this->url(array('controller' => 'article', 'action' => 'addcategory'), null, true); ?>" method="post" >
+        <section class="add-categories group">
+            <label for="">Section</label>
+            <select name="section" id="section_cat">
+                <option value="0" selected="selected" >Select Section</option>
+                <?php for ($i = 0; $i < count($this->sec_result); $i++) {
+                ?>
+                        <option value="<?php echo $this->sec_result[$i]['id']; ?>"><?php echo $this->sec_result[$i]['name']; ?></option>
+                <?php } ?>
+            </select><span id="section_cat_err" class="err" ></span><br><br><br>
+
+            <div class="english-danish ">
+                <div class="left-col">
+                    <h3>English</h3>
+                    <label for="">Category Name</label>
+                    <input type="text" name="category" id="category_cat" /><span id="category_cat_err" class="err" ></span><br><br>
+                    <div class="button">
+                        <button id="back" >Back</button>
+                        <button>Save</button>
+                    </div>
+                </div>
+
+            </div>	<!-- END english-danish -->
+
+        </section> <!-- END add-categories -->
+
+    </section> <!-- END main-content -->
+</form>
+<footer></footer>
+<script type="text/javascript">
+ var $ = jQuery.noConflict();
+		 CKEDITOR.replace('content_danish', {
+
+               // extraPlugins : 'autogrow'
+            });
+
+            var o=CKEDITOR.instances['content_danish'];
+            if (o) o.destroy();
+          CKEDITOR.replace('content', {
+
+               // extraPlugins : 'autogrow'
+            });
+
+            var o=CKEDITOR.instances['content'];
+            if (o) o.destroy();
+          
+        </script>
+</body>
+</html>
+

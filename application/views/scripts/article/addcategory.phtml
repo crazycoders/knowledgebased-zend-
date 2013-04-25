@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title>Knowledge Base</title>
+       <?php
+       // echo 'http://brijesh.com'.$this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+
+		  <?php
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+<link type="text/css" rel="stylesheet" media="screen" href="http://brijesh.com/knowledgebased/public/css/add.css"></link>
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+         <script src='http://brijesh.com/knowledgebased/public/js/bootstrap.js'></script>
+        <?php
+         //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/example.js');
+        ?>
+
+         <?php 
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/add.css');
+        ?>
+         
+        <?php
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/add.css');
+        ?>
+        <style type="text/css" >
+            .err{
+                color:#FF0000;
+            }
+        </style>
+        <!--[if IE ]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+        <?php 
+         //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/bootstrap.js');
+        ?>
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                $('#section_err').text("");
+                $('#catrgory_name_err').text("");
+		$('#catrgory_name_danish_err').text("");
+                               
+               
+
+                $('#category_form').submit(function() {
+                    var counter=false;
+                    if($('#section_cat').val()=='0')
+                        $('#section_cat_err').text("Please select section!");
+                    else
+                        $('#section_cat_err').text("");
+
+                    if($('#catrgory_name').val()=='')
+                        $('#catrgory_name_err').text("Please enter valid category!");
+                    else
+                        $('#catrgory_name_err').text("");
+		    
+		    if($('#catrgory_name_danish').val()=='')
+                        $('#catrgory_name_danish_err').text("Please enter valid category!");
+                    else
+                        $('#catrgory_name_danish_err').text("");
+
+
+
+                    if(($('#section_cat').val()!='0')&&($('#catrgory_name').val()!='')&&($('#catrgory_name_danish').val()!='')){
+                        return true;
+                    }
+                    return false;
+
+                });
+
+
+
+                $('#back').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'viewcategory'), null, true); ?>';
+                });
+                $('#category').click(function() {
+                    var htamlString='';
+                    if($('#section').val()!=''){
+                        
+                        $.ajax({
+                            url: '<?php echo $this->url(array('controller' => 'article', 'action' => 'getcategory'), null, true); ?>?id='+$('#section').val(),
+                            type: "GET",
+                            dataType:"json",
+                            success: function(data) {
+                                //alert(data);
+                                //$("#category").append("<option >select category</option>");
+                                htamlString='';
+                                for(var i=0;i<data.length;i++){
+                                    htamlString+="<option value="+data[i].id+">"+data[i].name+"</option>";
+                                }
+                                $("#category").append(htamlString);
+                            } 
+                        });
+                       
+                    }    });
+                $('#logout').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'index', 'action' => 'logout'), null, true); ?>';
+                });
+                $('#new').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'add'), null, true); ?>';
+                });
+                $('#new_cat').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'addcategory'), null, true); ?>';
+                });
+                $('#back').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'viewcategory'), null, true); ?>';
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+    <header>
+        <section class="top-header group">
+            <div class="logo">
+                <a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewarticle'), NULL, TRUE); ?>">Knowledge Base </a>
+            </div>
+            <button class="logout" id="logout">LOG OUT</button>
+            <button class="new" id="new">New Article</button>
+            <button class="new" id="new_cat">New Category</button>
+        </section> <!-- END logo -->
+
+        <section class="tab-menu group">
+            <nav>
+                <ul>
+                    <li data-name="add-article"><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewarticle'), NULL, true); ?>" >Articles</a> </li>
+                    <li class="active" data-name="add-categories"><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewcategory'), NULL, true); ?>" >Categories</a> </li>
+                </ul>
+            </nav>
+        </section> <!-- END tab-menu -->
+
+        <span class="tab-border group"></span>
+    </header>	<!-- END header -->
+   
+    <form id="category_form" action="<?php echo $this->url(array('controller' => 'article', 'action' => 'addcategory'), null, true); ?>" method="post" >
+<section class="main-content group">      
+	  <section class="add-article group">
+            <label for="">Section</label>
+            <select name="section" id="section_cat">
+                <option value="0" selected="selected" >Select Section</option>
+                <?php for ($i = 0; $i < count($this->sec_result); $i++) {
+                ?>
+                        <option value="<?php echo $this->sec_result[$i]['id']; ?>"><?php echo $this->sec_result[$i]['name']; ?></option>
+                <?php } ?>
+            </select><span id="section_cat_err" class="err" ></span><br><br><br>
+
+            <div class="english-danish ">
+                <div class="left-col">
+                    <h3>English</h3>
+                    <label for="">Category Name</label>
+                    <input type="text" name="catrgory_name" id="catrgory_name" /><br/><span class="err" id="catrgory_name_err" style="margin-left: 184px;"></span><br><br>
+                    <div class="button">
+                        <button id="back">Back</button>
+                        <button>Save</button>
+                    </div>
+                </div>
+
+                <div class="right-col">
+                    <h3>Danish</h3>
+                    <input type="text" name="catrgory_name_danish" id="catrgory_name_danish" /><br><span id="catrgory_name_danish_err" class="err" ></span>
+                </div>
+
+            </div>	<!-- END english-danish -->
+        </section> <!-- END add-categories -->
+
+    </section> <!-- END main-content -->
+</form>
+
+
+
+
+<footer></footer>
+</body>
+</html>
+

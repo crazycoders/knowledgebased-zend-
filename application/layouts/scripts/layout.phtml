@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title>Knowledge Base</title>
+        <?php
+       // echo 'http://brijesh.com'.$this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+
+		  <?php
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+<link type="text/css" rel="stylesheet" media="screen" href="http://brijesh.com/knowledgebased/public/css/add.css"></link>
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+         <script src='http://brijesh.com/knowledgebased/public/js/bootstrap.js'></script>
+        <?php
+         //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/example.js');
+        ?>
+
+         <?php
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/add.css');
+        ?>
+
+       <?php
+         //echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/add.css');
+        ?>
+        <style type="text/css" >
+            .err{
+                color:#FF0000;
+            }
+        </style>
+        <!--[if IE ]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+        <?php
+         //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/bootstrap.js');
+        ?>
+
+    </head>
+
+    <body>
+
+    <header>
+        <section class="top-header group">
+            <div class="logo">
+                <a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewarticle'), NULL, TRUE); ?>" >Knowledge Base </a>
+            </div>
+           
+        </section> <!-- END logo -->
+
+      
+
+        <span class="tab-border group"></span>
+    </header>	<!-- END header -->
+
+
+    <?php echo $this->layout()->content; ?>
+
+ <footer></footer>
+</body>
+</html>
+

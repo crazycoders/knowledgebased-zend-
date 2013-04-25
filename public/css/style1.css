@@ -1,0 +1,284 @@
+* { margin: 0; padding: 0; }
+body { font: 14px/1.4 Arial, Helvetica, sans-serif; }
+
+article, aside, footer, header, nav, section ,textarea{ display: block; }
+
+body{
+    background:url(../images/bgpattern.gif) transparent;
+}
+.group:before,
+.group:after {
+    content:"";
+    display:table;
+}
+.group:after {
+    clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+header{
+    background: none repeat scroll 0 0 #34383E;
+}
+.table-article,.table-category{
+	 margin: 20px auto 30px;
+    width: 940px;
+}
+.table-article,.table-article td,.table-article th{
+	 border: 1px solid black;
+
+	 font-weight: normal;
+}
+.table-category,.table-category td,.table-category th{
+	border: 1px solid black;
+     padding: 0 21px;
+	 font-weight: normal;
+}
+.table-article th{
+
+}
+table
+{
+border-collapse:collapse;
+}
+.logo>a{
+    color: white;
+    font-size: 27px;
+    text-shadow: 0 0 0.15em #BBBBBB;
+    text-transform: lowercase;
+    font-weight: bold;
+    text-decoration: none;
+    behavior: url(PIE.htc);
+}
+.top-header{
+    margin: 0 auto;
+    max-width: 1180px;
+}
+.logout{
+    background: url("../images/loginbuttonbg.png") repeat scroll 0 0 #4C4F52;
+    border: 1px solid #25272C;
+    box-shadow: 0 1px 0 0 #43464C;
+    color: #FFFFFF;
+    font-size: 8px;
+    font-weight: bold;
+    height: 19px;
+    margin: -28px 0 0;
+    padding: 0 6px;
+    text-shadow: 0 1px 2px #000000;
+    font-family: sans-serif;
+    float: right;
+    behavior: url(PIE.htc);
+}
+.logout:hover{
+    background-position: 0 34px;
+}
+.new{
+    background: url("../images/newticketbtn.png") repeat scroll 0 0 #6F9A43;
+    border: 1px solid #000000;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    height: 26px;
+    padding-left: 18px;
+    text-shadow: 1px 1px #444444;
+    width: 130px;
+    behavior: url(PIE.htc);
+}
+.new:hover{
+    background-position: 0 48px;
+    background-color:#6F9A43;
+}
+.tab-menu ul{
+    list-style: none outside none;
+    margin-top: -12px;
+    behavior: url(PIE.htc);
+}
+.tab-menu ul li{
+    float: left;
+    margin-left: 40px;
+}
+nav{
+    margin: 0 auto;
+    max-width: 1180px;
+}
+.tab-menu ul li a{
+    color: #FFFFFF;
+    float: left;
+    font-size: 84%;
+    font-weight: bold;
+    padding: 6px 20px 11px;
+    text-decoration: none;
+}
+.tab-menu ul li a:hover{
+    color:#C7D4E2;
+}
+.tab-border{
+    background: none repeat scroll 0 0 #4C5B6B;
+    border-bottom: 1px solid #292929;
+    border-top: 1px solid #64778C;
+    box-shadow: 0 1px 3px #777777;
+    float: left;
+    height: 7px;
+    width: 100%;
+    behavior: url(PIE.htc);
+}
+.active{
+    background-color: #4C5B6B;
+    background-image: url("../images/tabsBg.png");
+    border-color: #6C8197 #6C8197 -moz-use-text-color;
+    border-style: solid solid none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-width: 1px 1px 0;
+    box-shadow: 1px -1px 1px #282828;
+    position: relative;
+    top: 1px;
+    behavior: url(PIE.htc);
+}
+.main-content{
+    background: none repeat scroll 0 0 #FAFAFA;
+    border: 1px solid #D2D5D7;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 3px 6px -2px #DDDDDD;
+    margin-bottom: 20px;
+    margin: 28px auto;
+    width: 1020px;
+    behavior: url(PIE.htc);
+}
+.add-categories{
+    display: none;
+}
+label{
+    color: #1566AD;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 14px;
+    background: url("../images/hover.jpg")no-repeat scroll -200px 23px transparent;
+    padding: 0 0 10px;
+    -moz-transition: all 500ms ease-in-out 0s;
+}
+label:hover{
+    color: #6EB2ED;
+    background-position:  0px 18px;
+
+}
+#section{
+    margin: 20px 7px 0;
+    width: 300px;
+}
+.add-categories #section{
+    margin: 20px 65px 0;
+    width: 300px;
+}
+#Category{
+    margin: 20px -7px 0;
+    width: 300px;
+}
+.english{
+    float: left;
+}
+.danish{
+    float: right;
+    margin-right: 135px;
+}
+h3{
+
+}
+
+.english >input{
+    margin-left: 12px;
+    font-size: 16px;
+}
+.left-col>textarea{
+   margin: -20px 104px 0;
+}
+.left-col>.button{
+    float: left;
+    margin: -8px 0 11px 104px;
+}
+.button>button{
+    background: url("../images/buttonbg.png") repeat scroll 0 0 #417197;
+    border: 1px solid #000000;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 2px 4px -2px #BBBBBB;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    height: 26px;
+    text-shadow: 1px 1px #444444;
+    font-family: sans-serif;
+    padding: 0 10px 3px;
+    behavior: url(PIE.htc);
+
+}
+.button>button:hover{
+    background-color: #417197;
+    background-position: 0 52px;
+}
+.add-categories>.english >h3{
+    margin-left: 198px;
+}
+.add-categories>.english>input,.add-categories>.danish>input{
+    width: 240px;
+}
+.left-col{
+    float: left;
+}
+.right-col> h3{
+    margin: 10px 0px;
+}
+.right-col{
+    float: right;
+    margin-right: 250px;
+}
+.left-col>input{
+    margin-left: 16px;
+}
+.right-col>input{
+    margin-left: 0px;
+    margin-top: 5px;
+}
+.right-col>textarea{
+    margin-top: 7px;
+}
+.add-categories h3{
+    margin: 0 164px;
+}
+.add-categories .left-col input{
+    margin-left: -4px;
+}
+.add-categories .right-col input{
+    margin-left: 164px;
+}
+.add-categories .left-col > .button{
+    float: left;
+    margin: -10px 0 11px 164px;
+}
+
+
+.search{
+	 border: 1px solid #CCCCCC;
+    float: right;
+    height: 20px;
+    margin: -41px 155px;
+	 position: relative;
+	  z-index: 90;
+}
+
+.search-botton{
+   border: medium none;
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+    float: right;
+    height: 24px;
+    margin: -43px 0;
+    position: relative;
+    width: 135px;
+    z-index: 90;
+}

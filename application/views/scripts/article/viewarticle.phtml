@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title>Knowledge Base</title>
+        <?php
+        // echo 'http://brijesh.com'.$this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+
+        <?php
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+        <link type="text/css" rel="stylesheet" media="screen" href="http://brijesh.com/knowledgebased/public/css/add.css"></link>
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+        <script src='http://brijesh.com/knowledgebased/public/js/bootstrap.js'></script>
+        <?php
+        //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/example.js');
+        ?>
+
+        <?php
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/add.css');
+        ?>
+
+        <?php
+        //echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/add.css');
+        ?>
+        <style type="text/css" >
+            .err{
+                color:#FF0000;
+            }
+        </style>
+        <!--[if IE ]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+        <?php
+        //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/bootstrap.js');
+        ?>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#new').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'add'), null, true); ?>';
+                });
+                $('#new_cat').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'addcategory'), null, true); ?>';
+                });
+
+                $('#back').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'index'), null, true); ?>';
+                });
+                
+                $('#logout').click(function() {
+                    window.location.href='<?php echo $this->url(array('controller' => 'index', 'action' => 'logout'), null, true); ?>';
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+    <header>
+        <section class="top-header group">
+            <div class="logo">
+                <a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewarticle'), NULL, TRUE); ?>" >Knowledge Base </a>
+            </div>
+            <button class="logout" id="logout" >LOG OUT</button>
+            <button class="new" id="new">New Article</button>
+            <button class="new" id="new_cat">New Category</button>
+        </section> <!-- END logo -->
+
+        <section class="tab-menu group">
+            <nav>
+                <ul>
+                    <li class="active" data-name="add-article"><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewarticle'), NULL, true); ?>" >Articles</a> </li>
+                    <li  data-name="add-categories"><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'viewcategory'), NULL, true); ?>" >Categories</a> </li>
+                </ul>
+            </nav>
+        </section> <!-- END tab-menu -->
+
+        <span class="tab-border group"></span>
+    </header>	<!-- END header -->
+
+    <div class="table">
+        <div class="table-head group">
+            <div class="col1">Article</div>
+            <div class="col2">Section</div>
+            <div class="col3">Category</div>
+            <div class="col4">Last Update</div>
+            <div class="col5">Delete</div>
+        </div>  <!-- END table-head -->
+        <div class="content group">
+
+            <?php for ($i = 0; $i < count($this->article); $i++) {
+            ?>
+
+
+
+                <div class="row group">
+                    <div class="col1">
+                        <a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'edit', 'id' => $this->article[$i]['id'])); ?>"><?php if (isset($this->article[$i]['article_name']) && ($this->article[$i]['article_name'])
+
+                    )echo $this->article[$i]['article_name']; ?></a>
+                </div>
+                <div class="col2"><?php if (isset($this->article[$i]['sec_name']) && ($this->article[$i]['sec_name'])
+
+                            )echo $this->article[$i]['sec_name']; ?></div>
+                    <div class="col3"><?php if (isset($this->article[$i]['cat_name']) && ($this->article[$i]['cat_name'])
+
+                            )echo $this->article[$i]['cat_name']; ?></div>
+                    <div class="col4"><?php if (isset($this->article[$i]['date']) && ($this->article[$i]['date'])
+
+                            )echo date("j F,Y G:i", $this->article[$i]['date']); ?></div>
+                    <div class="col5"><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'deletearticle', 'id' => $this->article[$i]['id'])); ?>"><input type="button" value="Delete"></a></div>
+                </div>  <!-- END row -->
+
+            <?php } ?>
+
+        </div>  <!-- END table-content -->
+        <div class="table-foot"></div>  <!-- END table-foot -->
+    </div>  <!-- END table -->
+
+
+    <footer></footer>
+</body>
+</html>
+
+
+

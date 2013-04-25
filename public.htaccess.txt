@@ -1,0 +1,5 @@
+RewriteEngine On
+
+#RewriteCond %{HTTP_HOST} brijesh.com/knowledgebased/ [OR]
+ReWriteCond %{REQUEST_URI} !public
+ReWriteRule .* public/ [L,R=300]

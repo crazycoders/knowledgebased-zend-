@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<?php
+$filter = new View_Helper_Truncate(array('length' => 10, 'ending' => '..'));
+?>
+<html>
+
+    <head>
+        <meta charset='UTF-8' />
+
+        <title>BASE</title>
+        <?php
+        // echo 'http://brijesh.com'.$this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+
+        <?php
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+        <link type="text/css" rel="stylesheet" media="screen" href="http://brijesh.com/knowledgebased/public/css/style.css"></link>
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+        <script src='http://brijesh.com/knowledgebased/public/js/example.js'></script>
+        <?php
+        //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/example.js');
+        ?>
+
+        <?php
+        // echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/add.css');
+        ?>
+
+        <?php
+        //echo $this->headLink()->prependStylesheet(Zend_Controller_Front::getInstance()->getBaseUrl() . '/css/style.css');
+        ?>
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+        <?php
+        //echo $this->headScript()->appendFile(Zend_Controller_Front::getInstance()->getBaseUrl() . '/js/example.js');
+        ?>
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                $('#search_result').live("click","keypress",function() {
+                    var htamlString='';
+                    if($('#key_word').val()!=''){
+                        $('#article_result').hide();
+                        $('#article_category').hide();
+                        $.ajax({
+                            url: '<?php echo $this->url(array('controller' => 'article', 'action' => 'search'), null, true); ?>/key_word/'+$('#key_word').val(),
+                            type: "GET",
+                            dataType:"json",
+                            success: function(data) {
+                                $("#search_res").empty();
+                                if(data){
+                                    var htmlString='';
+                                    htmlString+="<h3>Results "+data.length+"-"+parseInt((data.length/10+1))+" in for <span>"+$('#key_word').val()+"</span></h3>";
+                                    for(var i=0;i<data.length;i++){
+                                        htmlString+="<a href="+"<?php echo $this->baseUrl() . '/article/view/id/'; ?>"+data[i].id+">"+data[i].article_name+"</a><label> (Last Updated: "+data[i].date+")</label><br><br><p>"+data[i].content+"</p><br><br>";
+                                        htmlString+="<div class='reference'><a style='color:red;text-decoration:underline;' href=''>"+data[i].sec_name+"  </a> > <a style='color:red;text-decoration:underline;' href='<?php echo $this->baseUrl() . '/article/view/id/'; ?>'>"+data[i].cat_name+"</a></div>";
+                                    }
+
+                                    $("#search_res").append(htmlString);
+                                }else{
+                                    $("#search_res").append("<span style='font-size:22px;font-weight:bold;' >No result found!</span>");
+                                }
+                            }
+                        });
+                    }    });
+
+                $('#key_word').live("keyup","keypress",function() {
+                    var htamlString='';
+                    if($('#key_word').val()!=''){
+                        $('#article_result').hide();
+                        $('#article_category').hide();
+                        $.ajax({
+                            url: '<?php echo $this->url(array('controller' => 'article', 'action' => 'search'), null, true); ?>/key_word/'+$('#key_word').val(),
+                            type: "GET",
+                            dataType:"json",
+                            success: function(data) {
+                                $("#search_res").empty();
+                                if(data){
+                                    var htmlString='';
+                                    htmlString+="<h3>Results "+data.length+"-"+parseInt((data.length/10+1))+" in for <span>"+$('#key_word').val()+"</span></h3>";
+                                    for(var i=0;i<data.length;i++){
+                                        htmlString+="<a href="+"<?php echo $this->baseUrl() . '/article/view/id/'; ?>"+data[i].id+">"+data[i].article_name+"</a><label> (Last Updated: "+data[i].date+")</label><br><br><p>"+data[i].content+"</p><br><br>";
+                                        htmlString+="<div class='reference'><a style='color:red;text-decoration:underline;' href=''>"+data[i].sec_name+"  </a> > <a style='color:red;text-decoration:underline;' href='<?php echo $this->baseUrl() . '/article/view/id/'; ?>'>"+data[i].cat_name+"</a></div>";
+                                    }
+
+                                    $("#search_res").append(htmlString);
+                                }else{
+                                    $("#search_res").append("<span style='font-size:22px;font-weight:bold;' >No result found!</span>");
+                                }
+                            }
+                        });
+                    }    });
+
+                //$('#lang').click(function() {
+
+                //});
+
+            });
+            function language_select(){
+                if($('#lang').val()!='')
+                    window.location.href='<?php echo $this->url(array('controller' => 'article', 'action' => 'index'), null, true); ?>?id=1&lang='+$('#lang').val();
+            }
+        </script>
+    </head>
+
+    <body>
+
+    <header>
+        <div class="set-width">
+            <div class="logo">
+                <a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'index'), NULL, TRUE); ?>" ><h1>Knowledge Base </h1></a>
+            </div>	 <!-- END logo -->
+
+            <form class="change-lang" action="" name="changelang" method="post">
+                <label for="lang">Change Language:</label>
+                <select class="lang-dropdown" id="lang" name="lang">
+                    <option <?php if (isset($this->lang) && (!$this->lang)) { ?>selected="selected" <?php } ?> value=''>select language</option>
+                    <option onClick="language_select();" value="eng" <?php if (isset($this->lang) && (preg_match('/eng/', $this->lang))) { ?>selected="selected" <?php } ?> >English (US)</option>
+                    <option onClick="language_select();" value="dan" <?php if (isset($this->lang) && (preg_match('/dan/', $this->lang))) { ?>selected="selected" <?php } ?> >Danish</option>
+                </select>
+            </form>
+
+
+            <nav>
+                <ul><?php for ($i = 0; $i < count($this->article['section_all']); $i++) { ?>
+                        <li <?php if (isset($this->active) && ($this->active == $this->article['section_all'][$i]['id'])
+
+                )echo 'class="active"'; ?> ><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'index', 'id' => $this->article['section_all'][$i]['id'])); ?>"><?php echo $this->article['section_all'][$i]['name']; ?></a></li>
+                        <?php } ?>
+                    <li class="search-box">
+                        <input type="text" placeholder="Search ..." class="search" id="key_word" />
+                        <button class="search-botton" id="search_result" >
+                            <img src="<?php echo Zend_Controller_Front::getInstance()->getBaseUrl() . '/images/magnify.png'; ?>" alt="">
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+
+        </div> <!-- END set-width -->
+    </header>
+
+    <div class="set-width">
+        <?php if (isset($this->article['category']) && (!empty($this->article['category'])) && (!empty($this->article['section_all']))) {
+        ?>
+                            <div class="main-content">
+            <?php
+                            for ($i = 0; $i < count($this->article['category']); $i++) {
+                                if (isset($this->article['category'][$i]['name']) && ($this->article['category'][$i]['name'])) {
+            ?>
+
+
+                                    <div id="article_result">
+                                        <div class="article-category" id="article_category" >
+                                            <h3><?php
+                                    if (isset($this->lang) && (preg_match('/eng/', $this->lang))
+
+                                        )echo $this->article['category'][$i]['name']; if (isset($this->lang) && (preg_match('/dan/', $this->lang))
+                                    )
+                                        echo $cat = isset($this->article['category'][$i]['name_danish']) && ($this->article['category'][$i]['name_danish']) ? ($this->article['category'][$i]['name_danish']) : (isset($this->article['category'][$i]['name']) && ($this->article['category'][$i]['name']) ? $this->article['category'][$i]['name'] : NULL);
+            ?></h3>	<a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $this->article['category'][$i]['id'])); ?>">(see more)</a>
+                                <ul><?php for ($j = 0; $j < count($this->article['category'][$i]['article']); $j++) { ?>
+                                        <li><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $this->article['category'][$i]['id'])); ?>"><?php
+                                        if (isset($this->lang) && (preg_match('/eng/', $this->lang))
+                                        
+                                            )echo $filter->truncate($this->article['category'][$i]['article'][$j]['article_name']);if (isset($this->lang) && (preg_match('/dan/', $this->lang))
+
+                                            )echo $filter->truncate($this->article['category'][$i]['article'][$j]['article_name_danish']);
+            ?></a></li>
+                        <?php }
+                                } ?>
+                            </ul>
+                        </div>
+                    </div> <div id="search_res">
+
+                    </div>
+            <?php } ?></div>	<!-- END set-width -->
+        <?php }else {
+        ?>
+
+                            <div class="main-content">
+
+
+                                <div id="article_result">
+                <?php foreach ($this->article as $value): if (isset($value['cat_name']) && ($value['cat_name'])) {
+ ?>
+                                    <div class="article-category" id="article_category" >
+                                        <h3><?php
+                                    if (isset($this->lang) && (preg_match('/eng/', $this->lang))
+                                    
+                                        )echo $value['cat_name']; if (isset($this->lang) && (preg_match('/dan/', $this->lang))
+
+                                        )echo $cat = isset($value['name_danish']) && ($value['name_danish']) ? ($value['name_danish']) : (isset($value['cat_name']) && ($value['cat_name']) ? $value['cat_name'] : NULL);
+                ?></h3>	<a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $value['cat_id'])); ?>">(see more)</a>
+                                <ul><?php ?>
+                                    <li><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $value['cat_id'])); ?>"><?php
+                                    if (isset($this->lang) && (preg_match('/eng/', $this->lang))
+                                    
+                                        )echo $filter->truncate($value['article_name']);if (isset($this->lang) && (preg_match('/dan/', $this->lang))
+
+                                        )echo $filter->truncate($value['article_name_danish']);
+                ?></a></li>
+
+                        </ul>
+                    </div> <?php } endforeach; ?>
+            </div><div id="search_res">
+
+            </div></div>
+
+
+
+
+        <?php } ?>
+        <aside>
+            <div class="contact">
+                <h3>Contacts</h3>
+                <a href="mailto:support@rainbowriders.dk">Email us</a>
+            </div>
+        </aside>
+
+    </div> <!-- END page-wrap -->
+
+</body></html>
